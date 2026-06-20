@@ -3,8 +3,6 @@ name: Build Kostyan Mod
 on:
   push:
     branches: [ main, master ]
-  release:
-    types: [ created ]
 
 jobs:
   build:
@@ -19,22 +17,16 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Download Gradle Wrapper JAR
+      - name: Install Gradle 8.6
         run: |
-          mkdir -p gradle/wrapper
-          curl -fL -o gradle/wrapper/gradle-wrapper.jar \
-            "https://github.com/gradle/gradle/raw/v8.6.0/gradle/wrapper/gradle-wrapper.jar"
-
-      - name: Grant execute permission
-        run: chmod +x gradlew
+          wget -q https://services.gradle.org/distributions/gradle-8.6-bin.zip -O gradle.zip
+          unzip -q gradle.zip
+          echo "$GITHUB_WORKSPACE/gradle-8.6/bin" >> $GITHUB_PATH
 
       - name: Build mod
-        run: ./gradlew build --no-daemon
+        run: gradle build --no-daemon
         env:
           GRADLE_OPTS: "-Xmx4g -Dfile.encoding=UTF-8"
-
-      - name: List build outputs
-        run: find build/libs -name "*.jar" 2>/dev/null || echo "No JAR files found"
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
