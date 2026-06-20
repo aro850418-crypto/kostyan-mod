@@ -36,7 +36,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
 
       - name: Build mod
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon --stacktrace --info 2>&1 | tail -100
         env:
           GRADLE_OPTS: "-Xmx3g"
 
