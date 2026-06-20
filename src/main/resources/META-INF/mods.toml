@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[51,)"
+license="MIT"
+
+[[mods]]
+    modId="kostyanmod"
+    version="1.0.0"
+    displayName="Kostyan Mod"
+    description='''
+        Костян — твой личный виртуальный помощник в Minecraft.
+        Бессмертная прирученная собака с огромными знаниями об игре.
+        Защищает игрока, общается через чат и всегда рядом!
+    '''
+
+[[dependencies.kostyanmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[51,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.kostyanmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.21.1,1.22)"
+    ordering="NONE"
+    side="BOTH"

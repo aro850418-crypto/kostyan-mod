@@ -1,0 +1,10 @@
+{
+  "entity.kostyanmod.kostyan": "Костян",
+  "item.kostyanmod.kostyan_bone": "Косточка Костяна",
+  "kostyanmod.chat.greeting": "Гав! Привет, друг! Я Костян, твой помощник в Майнкрафте!",
+  "kostyanmod.chat.defend": "Никто не трогает моего хозяина!",
+  "kostyanmod.chat.immortal": "Ха! Меня не убить, я бессмертный!",
+  "kostyanmod.chat.help": "Нужна помощь? Напиши /kostyan <вопрос>!",
+  "kostyanmod.chat.unknown": "Хм, не знаю как ответить на это. Попробуй спросить о Майнкрафте!",
+  "kostyanmod.chat.spawn": "Гав! Я появился! Я Костян — твоя бессмертная собака-помощник!"
+}
