@@ -1,44 +1,34 @@
 plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'eclipse'
-    id 'maven-publish'
 }
 
 version = '1.0.0'
 group = 'com.kostyanmod'
 archivesBaseName = 'kostyanmod'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
 
 minecraft {
     mappings channel: 'official', version: '1.21.1'
-
     copyIdeResources = true
 
     runs {
         client {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'kostyanmod'
             mods {
-                kostyanmod {
-                    source sourceSets.main
-                }
+                kostyanmod { source sourceSets.main }
             }
         }
-
         server {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'kostyanmod'
             mods {
-                kostyanmod {
-                    source sourceSets.main
-                }
+                kostyanmod { source sourceSets.main }
             }
         }
     }
@@ -47,6 +37,11 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    mavenCentral()
 }
 
 dependencies {
@@ -64,18 +59,5 @@ jar {
             'Implementation-Vendor'   : 'kostyanmodteam',
             'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
     }
 }
