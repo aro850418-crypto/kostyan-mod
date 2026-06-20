@@ -5,11 +5,13 @@ plugins {
 
 version = '1.0.0'
 group = 'com.kostyanmod'
-archivesBaseName = 'kostyanmod'
+
+base {
+    archivesName = 'kostyanmod'
+}
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
-    withSourcesJar()
 }
 
 minecraft {
